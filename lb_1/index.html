@@ -1,0 +1,32 @@
+!<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>students</title>
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+  </head>
+  <body>
+    <h1>Student List</h1>
+    <table border="1">
+        <tr>
+            <th>Full Name</th>
+            <th>Group</th>
+            <th>Grades</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.full_name }}</td>
+            <td>{{ student.group }}</td>
+            <td>
+                <ul>
+                {% for grade in student.grade_set.all %}
+                    <li>{{ grade.subject.name }}: {{ grade.grade }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+  </body>
+</html>

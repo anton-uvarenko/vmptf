@@ -1,0 +1,52 @@
+[
+  {
+    "Author": "another author",
+    "Text": "another text",
+    "Title": "Some title 22222",
+    "category": "Health",
+    "comments": [],
+    "id": 1
+  },
+  {
+    "Author": "another author",
+    "Text": "another text",
+    "Title": "Some title 23333",
+    "category": "Health",
+    "comments": [],
+    "id": 2
+  },
+  {
+    "id": 3,
+    "Title": "Some title 3",
+    "Author": "third author",
+    "Text": "third text",
+    "category": "Education",
+    "comments": [
+      "education comment"
+    ]
+  },
+  {
+    "id": 4,
+    "Title": "Some title 4",
+    "Author": "fourth author",
+    "Text": "fourth text",
+    "category": "Finance",
+    "comments": []
+  },
+  {
+    "Author": "author",
+    "Text": "adslfkjasd;fklajsdf;lkajsfa;lksjfasdkfjlaskjfasdlkajk;;j",
+    "Title": "hello",
+    "category": "category",
+    "comments": [],
+    "id": 5
+  },
+  {
+    "Author": "new author",
+    "Text": "very coool",
+    "Title": "some title",
+    "category": "new caeegory",
+    "comments": [],
+    "id": 6
+  }
+]

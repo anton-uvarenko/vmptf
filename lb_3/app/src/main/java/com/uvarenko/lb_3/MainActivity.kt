@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val data by viewModel.blogPosts.observeAsState()
-                    BlogApp(data?: emptyList(), {
+                    BlogApp(data ?: emptyList(), {
                         viewModel.addBlogPost(it)
                     }, {
                         viewModel.updatePost(it)
@@ -60,9 +60,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun BlogApp(blogs: List<BlogPost>,
-            addBlogPost: (BlogPost) -> Unit,
-            updateBlogPost: (BlogPost) -> Unit) {
+fun BlogApp(
+    blogs: List<BlogPost>,
+    addBlogPost: (BlogPost) -> Unit,
+    updateBlogPost: (BlogPost) -> Unit
+) {
     var selectedCategory by remember { mutableStateOf("All") }
     var showAddUpdateScreen by remember { mutableStateOf(false) }
     var currentPost by remember { mutableStateOf<BlogPost?>(null) }
@@ -80,9 +82,11 @@ fun BlogApp(blogs: List<BlogPost>,
             }
         )
     } else {
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
             CategoryDropdownMenu(selectedCategory) { newCategory ->
                 selectedCategory = newCategory
             }
@@ -93,7 +97,7 @@ fun BlogApp(blogs: List<BlogPost>,
                 Text("Add Post")
             }
             BlogList(
-                blogs = if (selectedCategory == "All") blogs!! else blogs!!.filter { it.category == selectedCategory },
+                blogs = if (selectedCategory == "All") blogs else blogs.filter { it.category == selectedCategory },
                 showUpdateScreen = { post ->
                     currentPost = post
                     showAddUpdateScreen = true
@@ -104,7 +108,7 @@ fun BlogApp(blogs: List<BlogPost>,
 }
 
 @Composable
-fun BlogList(blogs: List<BlogPost>,  showUpdateScreen: (BlogPost) -> Unit) {
+fun BlogList(blogs: List<BlogPost>, showUpdateScreen: (BlogPost) -> Unit) {
     LazyColumn {
         items(blogs.size) { blog ->
             BlogItem(blogs[blog], showUpdateScreen)
@@ -114,10 +118,12 @@ fun BlogList(blogs: List<BlogPost>,  showUpdateScreen: (BlogPost) -> Unit) {
 
 @Composable
 fun BlogItem(blog: BlogPost, showUpdateScreen: (BlogPost) -> Unit) {
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .wrapContentHeight()
-        .padding(8.dp)) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(8.dp)
+    ) {
         Column(modifier = Modifier.weight(1f)) {
             Text(text = blog.Title, style = MaterialTheme.typography.headlineMedium)
             Text(text = "Author: ${blog.Author}", style = MaterialTheme.typography.bodyMedium)
@@ -142,9 +148,11 @@ fun CategoryDropdownMenu(
     var expanded by remember { mutableStateOf(false) }
     val categories = listOf("All", "Tech", "Health", "Education", "Finance")
 
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .padding(8.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
         Column {
             Surface(
                 modifier = Modifier
@@ -158,9 +166,11 @@ fun CategoryDropdownMenu(
                 )
             }
             if (expanded) {
-                Column(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                ) {
                     categories.forEach { category ->
                         Surface(
                             modifier = Modifier
@@ -201,7 +211,7 @@ fun AddUpdatePostScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            label = {Text("title")},
+            label = { Text("title") },
             singleLine = true
         )
         OutlinedTextField(
@@ -210,7 +220,7 @@ fun AddUpdatePostScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            label = {Text("author")},
+            label = { Text("author") },
             singleLine = true
         )
         OutlinedTextField(
@@ -219,7 +229,7 @@ fun AddUpdatePostScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            label = {Text("category")},
+            label = { Text("category") },
             singleLine = true
         )
         OutlinedTextField(
@@ -229,7 +239,7 @@ fun AddUpdatePostScreen(
                 .fillMaxWidth()
                 .padding(8.dp)
                 .height(200.dp),
-            label = {Text("text")},
+            label = { Text("text") },
         )
         Button(onClick = {
             if (post == null) {
